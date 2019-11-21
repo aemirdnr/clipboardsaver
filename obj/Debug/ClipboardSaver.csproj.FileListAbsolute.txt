@@ -16,3 +16,12 @@ C:\Users\Admin\Downloads\ClipboardSaver\ClipboardSaver\obj\Debug\ClipboardSaver.
 C:\Users\Admin\Downloads\ClipboardSaver\ClipboardSaver\obj\Debug\ClipboardSaver.csproj.GenerateResource.cache
 C:\Users\Admin\Downloads\ClipboardSaver\ClipboardSaver\obj\Debug\ClipboardSaver.exe
 C:\Users\Admin\Downloads\ClipboardSaver\ClipboardSaver\obj\Debug\ClipboardSaver.pdb
+F:\DOSYALAR\Yazılım\Projeler\Clipboard Saver\bin\Debug\ClipboardSaver.exe.config
+F:\DOSYALAR\Yazılım\Projeler\Clipboard Saver\bin\Debug\ClipboardSaver.exe
+F:\DOSYALAR\Yazılım\Projeler\Clipboard Saver\bin\Debug\ClipboardSaver.pdb
+F:\DOSYALAR\Yazılım\Projeler\Clipboard Saver\obj\Debug\ClipboardSaver.csprojAssemblyReference.cache
+F:\DOSYALAR\Yazılım\Projeler\Clipboard Saver\obj\Debug\ClipboardSaver.menu.resources
+F:\DOSYALAR\Yazılım\Projeler\Clipboard Saver\obj\Debug\ClipboardSaver.Properties.Resources.resources
+F:\DOSYALAR\Yazılım\Projeler\Clipboard Saver\obj\Debug\ClipboardSaver.csproj.GenerateResource.cache
+F:\DOSYALAR\Yazılım\Projeler\Clipboard Saver\obj\Debug\ClipboardSaver.exe
+F:\DOSYALAR\Yazılım\Projeler\Clipboard Saver\obj\Debug\ClipboardSaver.pdb

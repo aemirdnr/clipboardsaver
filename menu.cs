@@ -11,6 +11,16 @@ namespace ClipboardSaver
             InitializeComponent();
         }
 
+        /*  
+           
+           [Version 1.5]
+          
+            Project link: www.github.com/aemirdnr/clipboardsaver
+
+            Author: www.github.com/aemirdnr
+
+        */
+
         string copyh;
         int indexMenuItem = 0;
 
@@ -31,18 +41,37 @@ namespace ClipboardSaver
                 menuItem[indexMenuItem++].Text = string.Concat(indexMenuItem, ". " , copyh); 
             }
         }
-        private void hide_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-        }
+        
         private void menu_Load(object sender, EventArgs e)
         {
             wUp.Checked = Properties.Settings.Default.cbox;
             copyTimer.Start();
+
+            //Last History Tab Settings
+            string data = Properties.Settings.Default.lasthstry;
+            string[] sData = data.Split('*');
+            foreach (var item in sData)
+            {
+                historyBox.Items.Add(item);
+            }
+
         }
         private void copyTimer_Tick(object sender, EventArgs e)
         {
             TakeCopy();
+        }
+        private void menu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            //Add data to settings
+            foreach (var data in copyHistory.Items)
+            {
+                Properties.Settings.Default.lasthstry += data + "*";
+            }
+            Properties.Settings.Default.Save();
+
+
+            Application.Exit();
         }
 
         #region ListBox Settings
@@ -53,6 +82,11 @@ namespace ClipboardSaver
                 Clipboard.SetText(copyHistory.SelectedItem.ToString());
         }
 
+        private void historyBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (historyBox.SelectedItem != null)
+                Clipboard.SetText(historyBox.SelectedItem.ToString());
+        }
 
         public static void AddApplicationToStartup()
         {
@@ -110,6 +144,22 @@ namespace ClipboardSaver
             {
                 RemoveApplicationFromStartup();
             }
+        }
+        #endregion
+
+        #region Button Settings
+        private void ClearLastButton_Click(object sender, EventArgs e)
+        {
+            historyBox.Items.Clear();
+            Properties.Settings.Default.lasthstry = "";         
+        }
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            copyHistory.Items.Clear();
+        }
+        private void hide_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
         #endregion
     }

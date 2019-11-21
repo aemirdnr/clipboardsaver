@@ -45,25 +45,34 @@
             this.copyLast = new System.Windows.Forms.ToolStripMenuItem();
             this.exitMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.wUp = new System.Windows.Forms.CheckBox();
+            this.tab1 = new System.Windows.Forms.TabControl();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.historyBox = new System.Windows.Forms.ListBox();
+            this.clearButton = new System.Windows.Forms.Button();
+            this.ClearLastButton = new System.Windows.Forms.Button();
             this.notifiMenu.SuspendLayout();
+            this.tab1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // copyHistory
             // 
             this.copyHistory.FormattingEnabled = true;
-            this.copyHistory.Location = new System.Drawing.Point(9, 6);
+            this.copyHistory.Location = new System.Drawing.Point(0, 0);
             this.copyHistory.Margin = new System.Windows.Forms.Padding(2);
             this.copyHistory.Name = "copyHistory";
-            this.copyHistory.Size = new System.Drawing.Size(314, 329);
+            this.copyHistory.Size = new System.Drawing.Size(308, 303);
             this.copyHistory.TabIndex = 0;
             this.copyHistory.SelectedIndexChanged += new System.EventHandler(this.copyHistory_SelectedIndexChanged);
             // 
             // hide
             // 
-            this.hide.Location = new System.Drawing.Point(329, 303);
+            this.hide.Location = new System.Drawing.Point(329, 310);
             this.hide.Margin = new System.Windows.Forms.Padding(2);
             this.hide.Name = "hide";
-            this.hide.Size = new System.Drawing.Size(112, 31);
+            this.hide.Size = new System.Drawing.Size(112, 24);
             this.hide.TabIndex = 1;
             this.hide.Text = "Hide";
             this.hide.UseVisualStyleBackColor = true;
@@ -179,23 +188,90 @@
             this.wUp.UseVisualStyleBackColor = true;
             this.wUp.CheckedChanged += new System.EventHandler(this.wUp_CheckedChanged);
             // 
+            // tab1
+            // 
+            this.tab1.Controls.Add(this.tabPage1);
+            this.tab1.Controls.Add(this.tabPage2);
+            this.tab1.Location = new System.Drawing.Point(10, 7);
+            this.tab1.Name = "tab1";
+            this.tab1.SelectedIndex = 0;
+            this.tab1.Size = new System.Drawing.Size(312, 327);
+            this.tab1.TabIndex = 5;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.historyBox);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(304, 301);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Last History";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.copyHistory);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(304, 301);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "History";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // historyBox
+            // 
+            this.historyBox.FormattingEnabled = true;
+            this.historyBox.Location = new System.Drawing.Point(0, 0);
+            this.historyBox.Name = "historyBox";
+            this.historyBox.Size = new System.Drawing.Size(304, 303);
+            this.historyBox.TabIndex = 1;
+            this.historyBox.SelectedIndexChanged += new System.EventHandler(this.historyBox_SelectedIndexChanged);
+            // 
+            // clearButton
+            // 
+            this.clearButton.Location = new System.Drawing.Point(330, 252);
+            this.clearButton.Name = "clearButton";
+            this.clearButton.Size = new System.Drawing.Size(112, 24);
+            this.clearButton.TabIndex = 6;
+            this.clearButton.Text = "Clear History";
+            this.clearButton.UseVisualStyleBackColor = true;
+            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
+            // 
+            // ClearLastButton
+            // 
+            this.ClearLastButton.Location = new System.Drawing.Point(330, 282);
+            this.ClearLastButton.Name = "ClearLastButton";
+            this.ClearLastButton.Size = new System.Drawing.Size(112, 24);
+            this.ClearLastButton.TabIndex = 7;
+            this.ClearLastButton.Text = "Clear Last History";
+            this.ClearLastButton.UseVisualStyleBackColor = true;
+            this.ClearLastButton.Click += new System.EventHandler(this.ClearLastButton_Click);
+            // 
             // menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(451, 344);
+            this.Controls.Add(this.ClearLastButton);
+            this.Controls.Add(this.clearButton);
+            this.Controls.Add(this.tab1);
             this.Controls.Add(this.wUp);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.hide);
-            this.Controls.Add(this.copyHistory);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximumSize = new System.Drawing.Size(467, 383);
             this.MinimumSize = new System.Drawing.Size(467, 383);
             this.Name = "menu";
-            this.Text = "Clipboard Saver | History";
+            this.Text = "Clipboard Saver";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.menu_FormClosing);
             this.Load += new System.EventHandler(this.menu_Load);
             this.notifiMenu.ResumeLayout(false);
+            this.tab1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -218,5 +294,11 @@
         private System.Windows.Forms.ToolStripMenuItem thirdCopy;
         private System.Windows.Forms.ToolStripMenuItem fourthCopy;
         private System.Windows.Forms.ToolStripMenuItem fifthCopy;
+        private System.Windows.Forms.TabControl tab1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.ListBox historyBox;
+        private System.Windows.Forms.Button clearButton;
+        private System.Windows.Forms.Button ClearLastButton;
     }
 }
