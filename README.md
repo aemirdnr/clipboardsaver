@@ -12,3 +12,6 @@ This program made for see the recent copy data.
 
 [21.11.19]
 + Version 1.5
+
+[22.11.19]
++ Version 1.6
