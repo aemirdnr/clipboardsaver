@@ -13,7 +13,7 @@ namespace ClipboardSaver
 
         /*  
            
-           [Version 1.5]
+           [Version 1.6]
           
             Project link: www.github.com/aemirdnr/clipboardsaver
 
@@ -23,6 +23,7 @@ namespace ClipboardSaver
 
         string copyh;
         int indexMenuItem = 0;
+        int x = 0;
 
         void TakeCopy()
         {            
@@ -30,7 +31,11 @@ namespace ClipboardSaver
 
             //If list already have data, don't save it.
             if (!copyHistory.Items.Contains(copyh))
-            {              
+            {
+                /*
+                DateTime now = DateTime.Now;
+                dataHistoryView.Items.Add(Convert.ToString(now.Hour) + ":" + Convert.ToString(now.Minute) + ":" + Convert.ToString(now.Second));
+                */
                 copyHistory.Items.Add(copyh);
 
                 ToolStripMenuItem[] menuItem = { firstCopy, secondCopy, thirdCopy, fourthCopy, fifthCopy };
@@ -76,18 +81,34 @@ namespace ClipboardSaver
 
         #region ListBox Settings
 
-        private void copyHistory_SelectedIndexChanged(object sender, EventArgs e)
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (copyHistory.SelectedItem != null)
-                Clipboard.SetText(copyHistory.SelectedItem.ToString());
+          if(copyHistory.SelectedItem != null) 
+             copyHistory.Items.Remove(copyHistory.SelectedItem);
+          else
+                MessageBox.Show("You must select item.");
         }
-
-        private void historyBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(copyHistory.SelectedItem != null)
+              Clipboard.SetText(copyHistory.SelectedItem.ToString());
+            else
+                MessageBox.Show("You must select item.");
+        }
+        private void deleteToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (historyBox.SelectedItem != null)
+                historyBox.Items.Remove(historyBox.SelectedItem);
+            else
+                MessageBox.Show("You must select item.");
+        }
+        private void copyToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (historyBox.SelectedItem != null)
                 Clipboard.SetText(historyBox.SelectedItem.ToString());
+            else
+                MessageBox.Show("You must select item.");
         }
-
         public static void AddApplicationToStartup()
         {
             using (RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true))
@@ -161,6 +182,27 @@ namespace ClipboardSaver
         {
             this.Hide();
         }
+        private void stopButton_Click(object sender, EventArgs e)
+        {
+            x++;
+            if (x == 2)
+            {
+                copyTimer.Start();
+                stopButton.Text = "STOP";
+                onOfLabel.Text = "STATUS: ON";
+                onOfLabel.ForeColor = System.Drawing.Color.ForestGreen;
+                x = 0;
+            }
+            else if (x == 1)
+            {
+                copyTimer.Stop();
+                stopButton.Text = "START";
+                onOfLabel.Text = "STATUS: OFF";
+                onOfLabel.ForeColor = System.Drawing.Color.Red;
+            }
+        }
+
         #endregion
+
     }
 }

@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(menu));
             this.copyHistory = new System.Windows.Forms.ListBox();
+            this.delOrCopy = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hide = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.copyTimer = new System.Windows.Forms.Timer(this.components);
@@ -46,30 +49,62 @@
             this.exitMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.wUp = new System.Windows.Forms.CheckBox();
             this.tab1 = new System.Windows.Forms.TabControl();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.historyBox = new System.Windows.Forms.ListBox();
+            this.delOrCopy2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.clearButton = new System.Windows.Forms.Button();
             this.ClearLastButton = new System.Windows.Forms.Button();
+            this.stopButton = new System.Windows.Forms.Button();
+            this.onOfLabel = new System.Windows.Forms.Label();
+            this.delOrCopy.SuspendLayout();
             this.notifiMenu.SuspendLayout();
             this.tab1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.delOrCopy2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // copyHistory
             // 
+            this.copyHistory.ContextMenuStrip = this.delOrCopy;
             this.copyHistory.FormattingEnabled = true;
-            this.copyHistory.Location = new System.Drawing.Point(0, 0);
+            this.copyHistory.Location = new System.Drawing.Point(0, 1);
             this.copyHistory.Margin = new System.Windows.Forms.Padding(2);
             this.copyHistory.Name = "copyHistory";
-            this.copyHistory.Size = new System.Drawing.Size(308, 303);
+            this.copyHistory.Size = new System.Drawing.Size(304, 303);
             this.copyHistory.TabIndex = 0;
-            this.copyHistory.SelectedIndexChanged += new System.EventHandler(this.copyHistory_SelectedIndexChanged);
+            // 
+            // delOrCopy
+            // 
+            this.delOrCopy.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem,
+            this.copyToolStripMenuItem});
+            this.delOrCopy.Name = "delOrCopy";
+            this.delOrCopy.Size = new System.Drawing.Size(108, 48);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.copyToolStripMenuItem.Text = "Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // hide
             // 
-            this.hide.Location = new System.Drawing.Point(329, 310);
+            this.hide.Location = new System.Drawing.Point(330, 281);
             this.hide.Margin = new System.Windows.Forms.Padding(2);
             this.hide.Name = "hide";
             this.hide.Size = new System.Drawing.Size(112, 24);
@@ -81,13 +116,13 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(327, 7);
+            this.label1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label1.Location = new System.Drawing.Point(327, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 26);
+            this.label1.Size = new System.Drawing.Size(118, 28);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Double click to copy \r\nhistory item.\r\n";
+            this.label1.Text = "Double click to history\r\nitem for copy or delete.";
             // 
             // copyTimer
             // 
@@ -192,22 +227,12 @@
             // 
             this.tab1.Controls.Add(this.tabPage1);
             this.tab1.Controls.Add(this.tabPage2);
+            this.tab1.Controls.Add(this.tabPage3);
             this.tab1.Location = new System.Drawing.Point(10, 7);
             this.tab1.Name = "tab1";
             this.tab1.SelectedIndex = 0;
             this.tab1.Size = new System.Drawing.Size(312, 327);
             this.tab1.TabIndex = 5;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.historyBox);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(304, 301);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Last History";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // tabPage1
             // 
@@ -220,18 +245,73 @@
             this.tabPage1.Text = "History";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.historyBox);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(304, 301);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Last History";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // historyBox
             // 
+            this.historyBox.ContextMenuStrip = this.delOrCopy2;
             this.historyBox.FormattingEnabled = true;
             this.historyBox.Location = new System.Drawing.Point(0, 0);
             this.historyBox.Name = "historyBox";
             this.historyBox.Size = new System.Drawing.Size(304, 303);
             this.historyBox.TabIndex = 1;
-            this.historyBox.SelectedIndexChanged += new System.EventHandler(this.historyBox_SelectedIndexChanged);
+            // 
+            // delOrCopy2
+            // 
+            this.delOrCopy2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem1,
+            this.copyToolStripMenuItem1});
+            this.delOrCopy2.Name = "delOrCopy2";
+            this.delOrCopy2.Size = new System.Drawing.Size(108, 48);
+            // 
+            // deleteToolStripMenuItem1
+            // 
+            this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
+            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
+            this.deleteToolStripMenuItem1.Text = "Delete";
+            this.deleteToolStripMenuItem1.Click += new System.EventHandler(this.deleteToolStripMenuItem1_Click);
+            // 
+            // copyToolStripMenuItem1
+            // 
+            this.copyToolStripMenuItem1.Name = "copyToolStripMenuItem1";
+            this.copyToolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
+            this.copyToolStripMenuItem1.Text = "Copy";
+            this.copyToolStripMenuItem1.Click += new System.EventHandler(this.copyToolStripMenuItem1_Click);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.linkLabel1);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(304, 301);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "About";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold);
+            this.linkLabel1.Location = new System.Drawing.Point(40, 125);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(229, 18);
+            this.linkLabel1.TabIndex = 1;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "www.github.com/aemirdnr";
             // 
             // clearButton
             // 
-            this.clearButton.Location = new System.Drawing.Point(330, 252);
+            this.clearButton.Location = new System.Drawing.Point(330, 222);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(112, 24);
             this.clearButton.TabIndex = 6;
@@ -241,7 +321,7 @@
             // 
             // ClearLastButton
             // 
-            this.ClearLastButton.Location = new System.Drawing.Point(330, 282);
+            this.ClearLastButton.Location = new System.Drawing.Point(330, 252);
             this.ClearLastButton.Name = "ClearLastButton";
             this.ClearLastButton.Size = new System.Drawing.Size(112, 24);
             this.ClearLastButton.TabIndex = 7;
@@ -249,11 +329,34 @@
             this.ClearLastButton.UseVisualStyleBackColor = true;
             this.ClearLastButton.Click += new System.EventHandler(this.ClearLastButton_Click);
             // 
+            // stopButton
+            // 
+            this.stopButton.Location = new System.Drawing.Point(330, 310);
+            this.stopButton.Margin = new System.Windows.Forms.Padding(2);
+            this.stopButton.Name = "stopButton";
+            this.stopButton.Size = new System.Drawing.Size(112, 24);
+            this.stopButton.TabIndex = 8;
+            this.stopButton.Text = "STOP";
+            this.stopButton.UseVisualStyleBackColor = true;
+            this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
+            // 
+            // onOfLabel
+            // 
+            this.onOfLabel.AutoSize = true;
+            this.onOfLabel.ForeColor = System.Drawing.Color.ForestGreen;
+            this.onOfLabel.Location = new System.Drawing.Point(350, 197);
+            this.onOfLabel.Name = "onOfLabel";
+            this.onOfLabel.Size = new System.Drawing.Size(72, 13);
+            this.onOfLabel.TabIndex = 9;
+            this.onOfLabel.Text = "STATUS: ON";
+            // 
             // menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(451, 344);
+            this.Controls.Add(this.onOfLabel);
+            this.Controls.Add(this.stopButton);
             this.Controls.Add(this.ClearLastButton);
             this.Controls.Add(this.clearButton);
             this.Controls.Add(this.tab1);
@@ -268,10 +371,14 @@
             this.Text = "Clipboard Saver";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.menu_FormClosing);
             this.Load += new System.EventHandler(this.menu_Load);
+            this.delOrCopy.ResumeLayout(false);
             this.notifiMenu.ResumeLayout(false);
             this.tab1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.delOrCopy2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -300,5 +407,15 @@
         private System.Windows.Forms.ListBox historyBox;
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.Button ClearLastButton;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.ContextMenuStrip delOrCopy;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip delOrCopy2;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem1;
+        private System.Windows.Forms.Button stopButton;
+        private System.Windows.Forms.Label onOfLabel;
     }
 }
